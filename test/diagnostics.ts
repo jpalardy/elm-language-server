@@ -115,7 +115,6 @@ function checkout(repo: string, url: string): void {
   process.chdir(repo);
   spawnSync("git", ["fetch"]);
   spawnSync("git", ["reset", "--hard", "HEAD"]);
-  spawnSync("elm", ["make"]);
   process.chdir(cur);
 }
 
