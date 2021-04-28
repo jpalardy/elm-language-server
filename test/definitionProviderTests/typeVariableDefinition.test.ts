@@ -97,4 +97,16 @@ foo _ =
 `;
     await testBase.testDefinition(source);
   });
+
+  it(`test nested record field to outer param`, async () => {
+    const source = `
+encodeDep : (constraint -> E.Value) -> ( Package.Name, constraint ) -> ( String, E.Value )
+                --X
+encodeDep encodeConstraint ( name, constraint ) =
+                                        --^
+    ( Package.toString name, encodeConstraint constraint )
+
+`;
+    await testBase.testDefinition(source);
+  });
 });
